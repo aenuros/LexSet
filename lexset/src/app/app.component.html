@@ -1,0 +1,20 @@
+<div>
+    <label>Text you want to analyze:</label>
+    <textarea [(ngModel)]="myText"></textarea>
+</div>
+
+
+<div>Please select the phoneme you want to look for:</div>
+
+<div>
+  <input type="radio" name="phoneme">
+  <label >CAUGHT</label>
+</div>
+<div>
+  <input type="radio" name="phoneme">
+  <label>DRESS</label>
+</div>
+
+<button (click)="analyzeText()">Analyze please</button>
+
+<div>{{myText}}</div>
