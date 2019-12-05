@@ -4,17 +4,17 @@
 </div>
 
 
-<div>Please select the phoneme you want to look for:</div>
+<div>Please select the lexical set you want to look for:</div>
 
-<div>
-  <input type="radio" name="phoneme">
-  <label >CAUGHT</label>
+<!-- type the name of the lexical set into the box -->
+<input #box type="text">
+
+
+<button (click)="containsThisPhoneme(box.value, myText)">Analyze please</button>
+
+<div>You looked for: {{ box.value }}.</div>
+
+<div *ngFor="let member of resultsArray">
+  <div>Words were found in this line: {{ member.line }}</div>
+<div>{{member.result}}</div>
 </div>
-<div>
-  <input type="radio" name="phoneme">
-  <label>DRESS</label>
-</div>
-
-<button (click)="containsThisPhoneme('AH', myText)">Analyze please</button>
-
-<div>{{myText}}</div>
