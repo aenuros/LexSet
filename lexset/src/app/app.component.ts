@@ -25,17 +25,20 @@ export class AppComponent {
 
 
   public containsThisPhoneme(phoneme, song) {
-
+    // byNewLine is an array where each member is a line of the text
     const byNewLine = song.split('\n');
     for (let i = 0; i < byNewLine.length; i++) {
+        // split each line into an array of words
         const currentLine = byNewLine[i].split(' ');
-
         for (let j = 0; j < currentLine.length; j++) {
+          // all words are capitalized for regularization and because the ARPAbet is already all-caps
             const word =  currentLine[j].toUpperCase();
             if (this.dictionary[word] && this.dictionary[word]['arpabet'].includes(this.convertLexicalSetToPhoneticDictionary(phoneme))) {
+              // create a 'result object' that tells you the line and the word that matched the selected lexical set
                 const resultObj = {
                   line: byNewLine[i],
-                  result: currentLine[j]
+                  result: currentLine[j],
+                  matchingPhoneme: phoneme
                 };
                 this.resultsArray.push(resultObj);
             }

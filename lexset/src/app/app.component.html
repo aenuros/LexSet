@@ -15,6 +15,6 @@
 <div>You looked for: {{ box.value }}.</div>
 
 <div *ngFor="let member of resultsArray">
-  <div>Words were found in this line: {{ member.line }}</div>
-<div>{{member.result}}</div>
+  <div>{{ member.line }}</div>
+<div><strong>{{member.result}}</strong></div>
 </div>
