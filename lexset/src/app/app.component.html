@@ -3,18 +3,17 @@
     <textarea [(ngModel)]="myText"></textarea>
 </div>
 
-
 <div>Please select the lexical set you want to look for:</div>
 
-<!-- type the name of the lexical set into the box -->
 <input #box type="text">
-
 
 <button (click)="containsThisPhoneme(box.value, myText)">Analyze please</button>
 
 <div>You looked for: {{ box.value }}.</div>
 
-<div *ngFor="let member of resultsArray">
-  <div>{{ member.line }}</div>
-<div><strong>{{member.result}}</strong></div>
+<div *ngFor="let member of resultsArray[box.value]">
+  <div>Line {{ member.lineNumber }} : {{ member.line }}</div>
+  <div *ngFor="let word of member.resultObj">
+    <strong>{{ word }}</strong>
+  </div>
 </div>
