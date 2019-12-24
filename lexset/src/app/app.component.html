@@ -9,7 +9,10 @@
 
 <button (click)="containsThisPhoneme(box.value, myText)">Analyze please</button>
 
-<div>You looked for: {{ box.value }}.</div>
+<div *ngIf="box.value">
+  You looked for: {{ box.value }}.
+</div>
+
 
 <div *ngFor="let member of resultsArray[box.value]">
   <div>Line {{ member.lineNumber }} : {{ member.line }}</div>

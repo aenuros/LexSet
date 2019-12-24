@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { DictionaryService } from './dictionary.service';
+import dictionary from '../assets/dictionary.json';
 
 @Component({
   selector: 'app-root',
@@ -58,30 +57,24 @@ export class AppComponent {
   You can check-out any time you like
   But you can never leave!"
   `;
-  dictionary;
+
   line: string;
   result: string;
   resultsArray = [];
   selectedWords = {};
 
-  constructor(private dictionaryService: DictionaryService) {
-    this.dictionaryService.getAllWords().subscribe(resp => {
-      this.dictionary = resp;
-    });
-  }
 
   public createUniqueList(phoneme, song): any {
-    // TODO - find a better way to sanitize text
     const list = song.toUpperCase().split(/[\s\n,"().!]+/);
     const uniqueList = new Set(list);
     const uniqueListArray = Array.from(uniqueList);
-
     this.selectedWords[phoneme] = [];
 
     for (const word of uniqueListArray) {
       const upperWord = String(word).toUpperCase();
-      if (this.dictionary[upperWord] &&
-        this.dictionary[upperWord]['arpabet'].includes(this.convertLexicalSetToPhoneticDictionary(phoneme))) {
+      if
+       (dictionary[upperWord] &&
+        dictionary[upperWord]['arpabet'].includes(this.convertLexicalSetToPhoneticDictionary(phoneme))) {
         this.selectedWords[phoneme].push(upperWord);
       }
     }
@@ -106,7 +99,6 @@ export class AppComponent {
         this.resultsArray[phoneme].push(resultObj);
       }
     }
-    console.log('Results array', this.resultsArray);
   }
 
   public convertLexicalSetToPhoneticDictionary(lexicalSet: string): string {
@@ -129,7 +121,6 @@ export class AppComponent {
       case 'PRICE': return 'AY';
       case 'CHOICE': return 'OY';
       case 'MOUTH': return 'AW';
-      // TODO - the following require more
       // case 'NEAR': return ;
       // case 'SQUARE': return;
       // case 'START': return;
